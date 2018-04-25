@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        '-//Hibernate/Hibernate Mapping DTD 3.0//EN'
+        'http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd'>
+<hibernate-mapping>
+    <class name="com.myit.erp.auth.menu.vo.MenuModel" table="tbl_menu">
+        <id name="uuid">
+            <generator class="native" />
+        </id>
+        <property name="name"/>
+        <property name="url"/>
+        
+        <!-- 菜单对菜单多对一 -->
+        <many-to-one name="parent" column="puuid" class="com.myit.erp.auth.menu.vo.MenuModel"></many-to-one>
+    
+    	<!-- 菜单对菜单一对多 -->
+    	<set name="children" cascade="delete" inverse="true">
+    	    <key column="puuid"></key>
+    	    <one-to-many class="com.myit.erp.auth.menu.vo.MenuModel"/>
+    	</set>
+    	
+    	<!-- 菜单对角色多对多 -->
+    	<set name="roles" table="tbl_role_menu">
+    	    <key column="menuUuid"></key>
+    	    <many-to-many column="roleUuid" class="com.myit.erp.auth.role.vo.RoleModel"></many-to-many>
+    	</set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        '-//Hibernate/Hibernate Mapping DTD 3.0//EN'
+        'http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd'>
+<hibernate-mapping>
+    <class name="com.myit.erp.invoice.storedetail.vo.StoreDetailModel" table="tbl_storeDetail">
+        <id name="uuid">
+            <generator class="native" />
+        </id>
+        <property name="num"/>
+        
+        <many-to-one name="gm" column="goodsUuid" class="com.myit.erp.invoice.goods.vo.GoodsModel"></many-to-one>
+    
+    	<many-to-one name="sm" column="storeUuid" class="com.myit.erp.invoice.store.vo.StoreModel"></many-to-one>
+    </class>
+</hibernate-mapping>

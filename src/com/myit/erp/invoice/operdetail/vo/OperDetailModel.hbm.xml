@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        '-//Hibernate/Hibernate Mapping DTD 3.0//EN'
+        'http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd'>
+<hibernate-mapping>
+    <class name="com.myit.erp.invoice.operdetail.vo.OperDetailModel" table="tbl_operDetail">
+        <id name="uuid">
+            <generator class="native" />
+        </id>
+        <property name="num"/>
+        <property name="operTime"/>
+        <property name="type"/>
+        
+        <!-- 与跟单员多对一关系 -->
+        <many-to-one name="em" column="empUuid" class="com.myit.erp.auth.emp.vo.EmpModel"></many-to-one>
+    	
+        <!-- 与商品多对一关系 -->
+    	<many-to-one name="gm" column="goodsUuid" class="com.myit.erp.invoice.goods.vo.GoodsModel"></many-to-one>
+    
+    	<!-- 与仓库多对一关系 -->
+    	<many-to-one name="sm" column="storeUuid" class="com.myit.erp.invoice.store.vo.StoreModel"></many-to-one>
+    </class>
+</hibernate-mapping>
